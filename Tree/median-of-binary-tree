@@ -1,0 +1,24 @@
+void inorder(struct Node *root,vector<int>& traversal){
+    if(root==NULL) return;
+    inorder(root->left,traversal);
+    traversal.push_back(root->data);
+    inorder(root->right,traversal);
+}
+float findMedian(struct Node *root)
+{
+      //Code here
+      vector<int> traversal;
+      inorder(root,traversal);
+      int n = traversal.size();
+      if(n==0){
+          return 0.0;
+      }
+      if(n%2==0){
+          int x = n/2;
+          int y=x-1;
+          return (traversal[x]+traversal[y])/2.0;
+      }else{
+          int x = n/2;
+          return traversal[x];
+      }
+}
